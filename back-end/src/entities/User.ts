@@ -16,6 +16,12 @@ class User {
   @Column()
   email: string;
 
+  @Column()
+  cpf: string;
+
+  @Column()
+  rg: string;
+
   @CreateDateColumn()
   created_at: Date;
 
