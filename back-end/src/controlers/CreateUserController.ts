@@ -5,11 +5,11 @@ class CreateUserController {
     async handle(request: Request, response: Response) {
 
       
-        const { name, email, cpf, rg} = request.body;
+        const { name, email, cpf, rg, pj} = request.body;
   
         const createUserService = new CreateUserService();
     
-        const user = await createUserService.test( name, email, cpf, rg);
+        const user = await createUserService.test( {name, email, cpf, rg, pj});
     
         return response.json(user);
  
