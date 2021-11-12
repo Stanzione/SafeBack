@@ -18,14 +18,19 @@ class CreateTagService {
             throw new Error("Need a name!");
         }
 
+        const contractAlreadyExists = await tagsRepositories.findOne({
+            name,
+        });
+
+        if (contractAlreadyExists) {
+            throw new Error("Contract Already exists");
+        }
+
         const tag = tagsRepositories.create({
             name,
             assinatura
         });
 
-       /* tag.name = name;
-        tag.assinatura = assinatura;
-*/
 
         await tagsRepositories.save(tag);
         

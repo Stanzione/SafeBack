@@ -32,6 +32,12 @@ export class CreateUsers1635634458014 implements MigrationInterface {
                     type: "varchar",
                   },
 
+                  {
+                    name: "pj",
+                    type: "boolean",
+                    default: false,
+                  },
+
  
                   {
                     name: "created_at",

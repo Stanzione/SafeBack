@@ -22,6 +22,9 @@ class User {
   @Column()
   rg: string;
 
+  @Column()
+  pj: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
