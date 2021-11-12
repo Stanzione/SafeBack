@@ -1,5 +1,6 @@
 import { UsersRepositories } from "../repositories/UserRepositories";
 import {getCustomRepository} from "typeorm"
+import { hash } from "bcryptjs";
 
 interface IUserRequest {
     name: string;
@@ -7,12 +8,13 @@ interface IUserRequest {
     cpf: string;
     rg: string;
     pj: boolean;
+    password: string;
     
   }
   
   class CreateUserService {
     
-    async test({name, email, cpf, rg, pj}: IUserRequest) {
+    async test({name, email, cpf, rg, pj, password}: IUserRequest) {
       const usersRepository = getCustomRepository(UsersRepositories);
   
   
@@ -33,14 +35,15 @@ interface IUserRequest {
         throw new Error("Unique data already in use");
       } 
         
-      
+      const passwordHash = await hash(password, 8)
   
       const user = usersRepository.create({
         email,
         name,
         cpf,
         rg,
-        pj
+        pj,
+        password: passwordHash,
       });
 
       await usersRepository.save(user);

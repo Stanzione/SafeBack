@@ -25,6 +25,9 @@ class User {
   @Column()
   pj: boolean;
 
+  @Column()
+  password: string;
+
   @CreateDateColumn()
   created_at: Date;
 
